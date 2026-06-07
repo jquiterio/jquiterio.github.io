@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jorge Quitério</title>
+
+    <meta name="description" content="Personal homepage. Links to blog, GitHub, LinkedIn, and other public profiles.">
+
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Inter, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--accent), #818cf8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .links {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            background: var(--card);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 14px;
+            padding: 1rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .link:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            margin-top: 2rem;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <div class="avatar">JQ</div>
+
+        <h1>Jorge Quitério</h1>
+
+        <p class="subtitle">
+            Software Development Manager • Space & Satellite Industry •
+            Technology Enthusiast • Lifelong Learner
+        </p>
+
+        <div class="links">
+            <a class="link" href="https://linkedin.com/in/quiteriojorge" target="_blank">
+                💼 LinkedIn
+            </a>
+
+            <a class="link" href="https://github.com/jquiterio" target="_blank">
+                💻 GitHub
+            </a>
+
+            <a class="link" href="https://medium.com/@jorgequiterio" target="_blank">
+                📚 Articles
+            </a>
+
+            <a class="link" href="mailto:jorge@quiterio.eu">
+                ✉️ Contact
+            </a>
+
+        </div>
+
+        <footer>
+            © 2026 Jorge Quitério
+        </footer>
+
+    </div>
+</div>
+
+</body>
+</html>
