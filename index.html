@@ -49,11 +49,24 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
+        .avatar-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
         .avatar {
             width: 110px;
             height: 110px;
             border-radius: 50%;
-            margin: 0 auto 1.5rem;
+        }
+        
+        .avatar-image {
+            object-fit: cover;
+            display: none;
+        }
+        
+        .avatar-fallback {
             background: linear-gradient(135deg, var(--accent), #818cf8);
             display: flex;
             align-items: center;
@@ -120,7 +133,10 @@
 <div class="container">
     <div class="card">
 
-        <div class="avatar">JQ</div>
+        <div class="avatar-container">
+            <img id="profile-photo" class="avatar avatar-image" src="profile.png" alt="Jorge Quitério">
+            <div id="avatar-fallback" class="avatar avatar-fallback">JQ</div>
+        </div>
 
         <h1>Jorge Quitério</h1>
 
@@ -154,6 +170,19 @@
 
     </div>
 </div>
+<script>
+    const photo = document.getElementById('profile-photo');
+    const fallback = document.getElementById('avatar-fallback');
 
+    photo.onload = () => {
+        photo.style.display = 'block';
+        fallback.style.display = 'none';
+    };
+
+    photo.onerror = () => {
+        photo.style.display = 'none';
+        fallback.style.display = 'flex';
+    };
+</script>
 </body>
 </html>
