@@ -1,0 +1,28 @@
+name: List new Medium articles
+
+# Once a day, add a link file in posts/ for every new Medium article.
+# Run it by hand from the Actions tab ("Run workflow") to list an article immediately.
+on:
+  schedule:
+    - cron: "17 5 * * *"   # 05:17 UTC daily
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read the Medium feed
+        run: python3 scripts/medium_sync.py
+      - name: Commit new articles
+        run: |
+          if [ -n "$(git status --porcelain posts)" ]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add posts
+            git commit -m "List new Medium articles"
+            git push
+          fi

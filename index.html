@@ -1,206 +1,635 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jorge Quitério</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jorge Quitério</title>
+<meta name="description" content="Jorge Quitério writes on mathematics, science, AI, leadership, and security for Europe's space infrastructure. Based in Luxembourg.">
+<meta name="author" content="Jorge Quitério">
+<link rel="canonical" href="https://jorge.quiterio.eu/">
+<meta property="og:site_name" content="Jorge Quitério">
+<meta property="og:title" content="Jorge Quitério">
+<meta property="og:description" content="Mathematics, science, AI, leadership, and security for Europe's space infrastructure.">
+<meta property="og:url" content="https://jorge.quiterio.eu/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://jorge.quiterio.eu/profile.png">
+<meta name="twitter:card" content="summary">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23131827'/%3E%3Cpath d='M8 46 C22 46 24 14 32 14 C40 14 42 46 56 46' fill='none' stroke='%238AA3FF' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Spectral:ital,wght@0,400;0,500;1,400;1,500&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Jorge Quitério","url":"https://jorge.quiterio.eu","image":"https://jorge.quiterio.eu/profile.png","sameAs":["https://www.linkedin.com/in/quiteriojorge","https://github.com/jquiterio","https://jorgequiterio.medium.com"]}
+</script>
+<style>
+/* Layout: technical-document grid. Section labels sit in a narrow left rail like margin notes;
+   content runs in the right column. Signature element: the live γGN density. */
+:root{
+  --paper:#F4F5F8; --surface:#FFFFFF; --ink:#131827; --muted:#586074;
+  --rule:#D8DCE6; --accent:#2446C4; --accent-soft:#E4E9FA;
+  --f-display:"Spectral","Iowan Old Style",Georgia,serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --rail:170px; --max:1120px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D111A; --surface:#141A26; --ink:#E6E9F1; --muted:#98A0B3;
+    --rule:#262D3C; --accent:#8AA3FF; --accent-soft:#1B2442; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D111A; --surface:#141A26; --ink:#E6E9F1; --muted:#98A0B3;
+  --rule:#262D3C; --accent:#8AA3FF; --accent-soft:#1B2442; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--f-body); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased}
+img{max-width:100%; height:auto}
+a{color:var(--accent); text-underline-offset:3px; text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
+h1,h2,h3{font-family:var(--f-display); font-weight:500; text-wrap:balance; margin:0; line-height:1.2}
+p{margin:0}
+[hidden]{display:none!important}
+.wrap{max-width:var(--max); margin:0 auto; padding-inline:clamp(16px,4vw,40px)}
+.label{font-family:var(--f-mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.label a{color:inherit; text-decoration:none}
+.label a:hover{color:var(--accent)}
+.skip{position:absolute; left:-9999px}
+.skip:focus{left:16px; top:12px; z-index:100; background:var(--surface); padding:8px 12px}
 
-    <meta name="description" content="Personal homepage. Links to blog, GitHub, LinkedIn, and other public profiles.">
-    <meta name="color-scheme" content="light dark">
+/* header */
+.top{position:sticky; top:env(safe-area-inset-top,0px); z-index:20; background:color-mix(in srgb,var(--paper) 90%,transparent);
+  backdrop-filter:saturate(1.4) blur(10px); -webkit-backdrop-filter:saturate(1.4) blur(10px); border-bottom:1px solid var(--rule)}
+.top .wrap{display:flex; align-items:center; gap:20px; min-height:60px}
+.brand{font-family:var(--f-display); font-size:1.18rem; font-weight:500; color:var(--ink); text-decoration:none; white-space:nowrap}
+.nav{margin-left:auto; display:flex; gap:22px; overflow-x:auto; scrollbar-width:none; min-width:0}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font-size:.9rem; color:var(--muted); text-decoration:none; white-space:nowrap; padding-block:18px; border-bottom:2px solid transparent}
+.nav a:hover{color:var(--ink)}
+.nav a[aria-current="page"]{color:var(--ink); border-bottom-color:var(--accent)}
 
-    <style>
-        :root {
-            --bg: #ffffff;
-            --bg-gradient: linear-gradient(135deg, #f8fafc, #e2e8f0);
-            --card: rgba(255, 255, 255, 0.85);
-            --text: #0f172a;
-            --muted: #64748b;
-            --accent: #0284c7;
-            --accent-hover: #0369a1;
-            --border: rgba(15, 23, 42, 0.1);
-            --shadow: rgba(0, 0, 0, 0.08);
-        }
-        
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg: #0f172a;
-                --bg-gradient: linear-gradient(135deg, #0f172a, #1e293b);
-                --card: rgba(30, 41, 59, 0.85);
-                --text: #f8fafc;
-                --muted: #94a3b8;
-                --accent: #38bdf8;
-                --accent-hover: #0ea5e9;
-                --border: rgba(148, 163, 184, 0.15);
-                --shadow: rgba(0, 0, 0, 0.35);
-            }
-        }
+/* hero */
+.hero{padding-block:clamp(40px,7vw,88px) clamp(40px,6vw,72px)}
+.hero-grid{display:grid; grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr); gap:clamp(32px,5vw,64px); align-items:start}
+.hero h1{font-size:clamp(2.15rem,4.6vw,3.55rem); line-height:1.08; letter-spacing:-.012em; margin-top:16px}
+.hero h1 em{font-style:italic; color:var(--accent)}
+.lede{margin-top:24px; font-size:1.08rem; max-width:60ch}
+.lede + .lede{margin-top:12px; color:var(--muted); font-size:1rem}
+.actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:30px}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:4px; background:var(--ink); color:var(--paper);
+  text-decoration:none; font-weight:500; font-size:.9rem; border:1px solid var(--ink); cursor:pointer; font-family:var(--f-body); line-height:1.3}
+.btn:hover{background:var(--accent); border-color:var(--accent); color:var(--paper)}
+.btn.ghost{background:transparent; color:var(--ink); border-color:var(--rule)}
+.btn.ghost:hover{border-color:var(--accent); color:var(--accent)}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+/* blocks */
+.block{border-top:1px solid var(--rule); padding-block:clamp(44px,6vw,72px)}
+.block-grid{display:grid; grid-template-columns:var(--rail) minmax(0,1fr); gap:clamp(20px,4vw,56px)}
+.rail .label{position:sticky; top:88px; display:block}
+.block h2{font-size:clamp(1.55rem,2.8vw,2.1rem); max-width:30ch}
+.intro{margin-top:12px; color:var(--muted); max-width:62ch}
 
-        body {
-            font-family: Inter, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-            background: var(--bg-gradient);
-            color: var(--text);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
+/* entries */
+.entries{list-style:none; margin:22px 0 0; padding:0}
+.entry{display:grid; grid-template-columns:104px minmax(0,1fr); gap:20px; padding-block:18px; border-bottom:1px solid var(--rule)}
+.entry:first-child{border-top:1px solid var(--rule)}
+.entry time{font-family:var(--f-mono); font-size:.8rem; color:var(--muted); font-variant-numeric:tabular-nums; padding-top:4px}
+.entry h3{font-size:1.2rem; line-height:1.3}
+.entry h3 a{color:var(--ink); text-decoration:none}
+.entry h3 a:hover{color:var(--accent); text-decoration:underline}
+.entry p{margin-top:6px; font-size:.93rem; color:var(--muted); max-width:70ch}
+.where{display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; align-items:center}
+.src{font-family:var(--f-mono); font-size:.7rem; letter-spacing:.06em; text-transform:uppercase; color:var(--accent)}
+.status{margin-top:22px; padding:18px; border:1px dashed var(--rule); border-radius:6px; color:var(--muted); font-size:.95rem}
 
-        .container {
-            width: 100%;
-            max-width: 700px;
-        }
+/* topics overview */
+.topics{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:40px 48px; margin-top:28px}
+.topic{border-top:2px solid var(--ink); padding-top:14px; min-width:0}
+.topic h3{font-size:1.4rem}
+.topic h3 a{color:var(--ink); text-decoration:none}
+.topic h3 a:hover{color:var(--accent)}
+.topic > p{margin-top:6px; font-size:.93rem; color:var(--muted)}
+.topic ul{list-style:none; margin:14px 0 0; padding:0}
+.topic li{padding-block:9px; border-bottom:1px solid var(--rule); font-size:.95rem; display:flex; justify-content:space-between; gap:14px}
+.topic li a{color:var(--ink); text-decoration:none; min-width:0}
+.topic li a:hover{color:var(--accent); text-decoration:underline}
+.topic li time{font-family:var(--f-mono); font-size:.75rem; color:var(--muted); white-space:nowrap; padding-top:3px}
+.topic .none{color:var(--muted); font-size:.9rem; padding-block:10px}
 
-        .card {
-            background: var(--card);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 3rem;
-            text-align: center;
-            box-shadow: 0 20px 40px var(--shadow);
-        }
+/* page head */
+.page-head{padding-block:clamp(40px,7vw,80px) clamp(24px,4vw,40px)}
+.page-head h1{font-size:clamp(2.1rem,4.6vw,3.2rem); line-height:1.1; margin-top:14px; max-width:22ch}
+.page-head .standfirst{margin-top:18px; font-size:1.1rem; max-width:62ch; color:var(--muted)}
 
-        .avatar-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .avatar {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-        }
-        
-        .avatar-image {
-            object-fit: cover;
-            display: none;
-        }
-        
-        .avatar-fallback {
-            background: linear-gradient(135deg, var(--accent), #818cf8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: white;
-        }
+/* article */
+.article-head{padding-block:clamp(40px,7vw,80px) 26px; max-width:760px}
+.article-head h1{font-size:clamp(2rem,4.2vw,3rem); line-height:1.12; letter-spacing:-.01em; margin-top:14px}
+.dek{margin-top:18px; font-size:1.15rem; color:var(--muted)}
+.byline{display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:22px; font-size:.82rem; color:var(--muted); font-family:var(--f-mono)}
+.prose{max-width:720px; padding-bottom:clamp(40px,6vw,72px); font-size:1.06rem; line-height:1.72}
+.prose > * + *{margin-top:1.1em}
+.prose h2{font-size:1.6rem; margin-top:2em}
+.prose h3{font-size:1.25rem; margin-top:1.6em}
+.prose ul,.prose ol{padding-left:1.3em}
+.prose li + li{margin-top:.35em}
+.prose blockquote{margin-left:0; padding-left:20px; border-left:2px solid var(--accent); font-family:var(--f-display); font-size:1.18rem}
+.prose code{font-family:var(--f-mono); font-size:.88em; background:var(--accent-soft); padding:1px 5px; border-radius:3px}
+.prose pre{background:var(--surface); border:1px solid var(--rule); border-radius:6px; padding:16px; overflow-x:auto; font-size:.88rem; line-height:1.55}
+.prose pre code{background:none; padding:0}
+.prose table{border-collapse:collapse; width:100%; font-size:.93rem; display:block; overflow-x:auto}
+.prose th,.prose td{border-bottom:1px solid var(--rule); padding:8px 14px 8px 0; text-align:left; vertical-align:top}
+.prose th{font-family:var(--f-mono); font-weight:400; font-size:.74rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted)}
+.prose hr{border:0; border-top:1px solid var(--rule); margin-block:2.4em}
+.prose .math-display{overflow-x:auto; overflow-y:hidden; padding-block:6px}
+.prose .gn{margin-block:2em}
+.prose .refs{font-size:.92rem; color:var(--muted)}
+.article-foot{border-top:1px solid var(--rule); padding-block:26px 64px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px; max-width:720px}
+.external-card{max-width:720px; padding:24px; border:1px solid var(--rule); border-radius:6px; background:var(--surface); margin-bottom:64px}
+.external-card p{color:var(--muted)}
+.external-card .btn{margin-top:18px}
 
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
+/* γGN figure */
+.gn{background:var(--surface); border:1px solid var(--rule); border-radius:6px; padding:20px 20px 16px; margin:0}
+.gn-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap}
+.gn-title{font-family:var(--f-display); font-style:italic; font-size:1.12rem}
+.gn-legend{display:flex; gap:16px; font-size:.74rem; color:var(--muted); font-family:var(--f-mono)}
+.gn-legend i{display:inline-block; width:14px; height:0; border-top:2px solid var(--accent); vertical-align:middle; margin-right:6px}
+.gn-legend i.ref{border-top:2px dashed var(--muted)}
+.gn canvas{display:block; width:100%; height:220px; margin-top:12px}
+.gn.full canvas{height:300px}
+.gn-row{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:14px}
+.gn input[type=range]{width:100%; accent-color:var(--accent); margin:6px 0 0}
+.gn-ticks{display:flex; justify-content:space-between; margin-top:6px; gap:8px}
+.gn-ticks button,.gn-toggle{font:inherit; font-family:var(--f-mono); font-size:.72rem; color:var(--muted); background:none; border:0; padding:4px 0; cursor:pointer}
+.gn-ticks button:hover,.gn-ticks button[aria-pressed="true"]{color:var(--accent)}
+.gn-toggle{border:1px solid var(--rule); border-radius:3px; padding:3px 8px}
+.gn-toggle[aria-pressed="true"]{border-color:var(--accent); color:var(--accent)}
+.gn-readout{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:14px; border-top:1px solid var(--rule); padding-top:12px}
+.gn.full .gn-readout{grid-template-columns:repeat(4,minmax(0,1fr))}
+.gn-readout div{min-width:0}
+.gn-readout b{display:block; font-family:var(--f-mono); font-weight:500; font-size:1rem; font-variant-numeric:tabular-nums}
+.gn-readout span{font-size:.72rem; color:var(--muted)}
+.gn-note{margin-top:12px; font-size:.85rem; color:var(--muted); line-height:1.5}
 
-        .subtitle,
-        footer {
-            color: var(--muted);
-        }
+/* about */
+.about-grid{display:grid; grid-template-columns:minmax(0,1fr) 240px; gap:clamp(28px,5vw,60px); align-items:start}
+.about-grid .bio > * + *{margin-top:1em}
+.about-grid .bio{max-width:64ch}
+.portrait{width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:6px; filter:grayscale(1); border:1px solid var(--rule)}
+.elsewhere{list-style:none; margin:28px 0 0; padding:0; max-width:64ch}
+.elsewhere li{display:flex; justify-content:space-between; gap:16px; padding-block:11px; border-bottom:1px solid var(--rule); font-size:.95rem}
+.elsewhere li:first-child{border-top:1px solid var(--rule)}
+.elsewhere span{color:var(--muted)}
+.contact-row{display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:22px}
+.email{font-family:var(--f-mono); font-size:1.02rem; user-select:all; padding:9px 14px; border:1px solid var(--rule); border-radius:4px; background:var(--surface); overflow-wrap:anywhere}
+.copied{font-size:.85rem; color:var(--accent); min-height:1.2em}
 
-        .links {
-            display: grid;
-            gap: 1rem;
-        }
+footer{border-top:1px solid var(--rule); padding-block:32px 44px; font-size:.85rem; color:var(--muted)}
+footer .wrap{display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px 24px}
+footer nav{display:flex; flex-wrap:wrap; gap:8px 20px}
+footer a{color:var(--muted); text-decoration:none}
+footer a:hover{color:var(--accent)}
 
-        .link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: var(--text);
-            background: transparent;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1rem;
-            font-weight: 600;
-            transition: all 0.25s ease;
-        }
-        
-        .link:hover {
-            background: var(--accent);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        footer {
-            margin-top: 2rem;
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 600px) {
-            .card {
-                padding: 2rem;
-            }
-
-            h1 {
-                font-size: 1.7rem;
-            }
-        }
-    </style>
+@media (max-width:900px){
+  .hero-grid,.about-grid{grid-template-columns:minmax(0,1fr)}
+  .about-grid .portrait{max-width:200px; order:-1}
+  .block-grid{grid-template-columns:minmax(0,1fr); gap:10px}
+  .rail .label{position:static}
+}
+@media (max-width:640px){
+  .top .wrap{gap:14px}
+  .nav{gap:16px}
+  .topics{grid-template-columns:minmax(0,1fr)}
+  .entry{grid-template-columns:minmax(0,1fr); gap:4px}
+  .gn canvas{height:190px}
+  .gn.full canvas{height:230px}
+  .gn.full .gn-readout{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+</style>
 </head>
 <body>
+<a class="skip" href="#/" onclick="document.getElementById('main').focus();return false">Skip to content</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#/">Jorge Quitério</a>
+    <nav class="nav" id="nav" aria-label="Topics"></nav>
+  </div>
+</header>
 
-<div class="container">
-    <div class="card">
-
-        <div class="avatar-container">
-            <img id="profile-photo" class="avatar avatar-image" src="profile.png" alt="Jorge Quitério">
-            <div id="avatar-fallback" class="avatar avatar-fallback">JQ</div>
-        </div>
-
-        <h1>Jorge Quitério</h1>
-
-        <p class="subtitle">
-            Technology Enthusiast • Lifelong Learner
-        </p>
-
-        <div class="links">
-            <a class="link" href="https://linkedin.com/in/quiteriojorge" target="_blank">
-                💼 LinkedIn
-            </a>
-
-            <a class="link" href="https://github.com/jquiterio" target="_blank">
-                💻 GitHub
-            </a>
-
-            <a class="link" href="https://medium.com/@jorgequiterio" target="_blank">
-                📚 Articles
-            </a>
-
-            <a class="link" href="mailto:jorge@quiterio.eu">
-                ✉️ Contact
-            </a>
-
-        </div>
-
-        <footer>
-            © 2026 Jorge Quitério
-        </footer>
-
+<main id="main" tabindex="-1">
+  <noscript>
+    <div class="wrap" style="padding-block:48px">
+      <p>This site needs JavaScript to list articles. You can read them directly in the
+      <a href="https://github.com/jquiterio/jquiterio.github.io/tree/main/posts">posts folder on GitHub</a>
+      or on <a href="https://jorgequiterio.medium.com">Medium</a>.</p>
     </div>
-</div>
+  </noscript>
+  <div id="view"></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav id="foot-nav" aria-label="Footer"></nav>
+    <nav aria-label="Elsewhere">
+      <a href="https://jorgequiterio.medium.com" rel="me noopener" target="_blank">Medium</a>
+      <a href="https://www.linkedin.com/in/quiteriojorge" rel="me noopener" target="_blank">LinkedIn</a>
+      <a href="https://github.com/jquiterio" rel="me noopener" target="_blank">GitHub</a>
+    </nav>
+    <span>© <span id="year">2026</span> Jorge Quitério · Luxembourg</span>
+  </div>
+</footer>
+
 <script>
-    const photo = document.getElementById('profile-photo');
-    const fallback = document.getElementById('avatar-fallback');
+(function () {
+"use strict";
 
-    photo.onload = () => {
-        photo.style.display = 'block';
-        fallback.style.display = 'none';
-    };
+/* ============================================================================
+   CONFIGURATION — the only part you normally edit
+   ========================================================================== */
+var REPO = "jquiterio/jquiterio.github.io";
+var BRANCH = "main";
+var POSTS_DIR = "posts";
+// Topics in display order. A post's topic is the word after the date in its file name:
+//   posts/2026-10-06-math-fisher-information.md  ->  topic "math"
+// Any topic not listed here is shown under "Other", labelled with its own name.
+var TOPICS = [
+  { id: "math",       title: "Math",       blurb: "Probability, distributions and the information measures that connect them." },
+  { id: "science",    title: "Science",    blurb: "Statistics, time series and optimisation applied to real data." },
+  { id: "ai",         title: "AI",         blurb: "AI in software engineering, and how to trust what it produces." },
+  { id: "leadership", title: "Leadership", blurb: "Leading technical teams, governance and decisions about risk." },
+  { id: "other",      title: "Other",      blurb: "Society and Europe, security for space infrastructure, and software engineering." }
+];
+var OTHER_LABELS = { society: "Life & Society", security: "Security & Space", engineering: "Engineering" };
 
-    photo.onerror = () => {
-        photo.style.display = 'none';
-        fallback.style.display = 'flex';
-    };
+/* ============================================================================
+   Utilities
+   ========================================================================== */
+var $ = function (s, r) { return (r || document).querySelector(s); };
+var view = $("#view");
+var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+var MONTHS_L = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function fmtDate(d, long) { var p = d.split("-"); return long ? (+p[2]) + " " + MONTHS_L[+p[1]-1] + " " + p[0] : p[2] + " " + MONTHS[+p[1]-1] + " " + p[0]; }
+function today() { var n = new Date(); return n.getFullYear() + "-" + String(n.getMonth()+1).padStart(2,"0") + "-" + String(n.getDate()).padStart(2,"0"); }
+function topicOf(id) { return TOPICS.filter(function (t) { return t.id === id; })[0] ? id : "other"; }
+function topicLabel(id) { var t = TOPICS.filter(function (x) { return x.id === id; })[0]; return t ? t.title : (OTHER_LABELS[id] || id.charAt(0).toUpperCase() + id.slice(1)); }
+function store(k, v) { try { if (v === undefined) return JSON.parse(localStorage.getItem(k)); localStorage.setItem(k, JSON.stringify(v)); } catch (e) { return null; } }
+
+// File name: YYYY-MM-DD-topic-slug.md
+function parseName(name) {
+  var m = /^(\d{4}-\d{2}-\d{2})-([a-z0-9]+)-(.+)\.md$/i.exec(name);
+  if (!m) return null;
+  return { id: name.replace(/\.md$/i, ""), date: m[1], topic: m[2].toLowerCase(), slug: m[3] };
+}
+
+// Minimal front matter: key: value, "quoted", [lists], true/false
+function frontMatter(text) {
+  var meta = {}, body = text;
+  var m = /^---\s*\n([\s\S]*?)\n---\s*\n?/.exec(text);
+  if (m) {
+    body = text.slice(m[0].length);
+    m[1].split("\n").forEach(function (line) {
+      var kv = /^([A-Za-z_][\w-]*):\s*(.*)$/.exec(line);
+      if (!kv) return;
+      var v = kv[2].trim();
+      if (/^["\[]/.test(v)) { try { v = JSON.parse(v); } catch (e) { v = v.replace(/^"|"$/g, ""); } }
+      else if (v === "true" || v === "false") v = v === "true";
+      else v = v.replace(/^'|'$/g, "");
+      meta[kv[1]] = v;
+    });
+  }
+  return { meta: meta, body: body };
+}
+
+/* ============================================================================
+   Loading posts from the repository
+   ========================================================================== */
+var posts = null, loading = null, bodies = {};
+var CACHE = "jq-posts-v1", TTL = 10 * 60 * 1000;
+
+function loadPosts() {
+  if (posts) return Promise.resolve(posts);
+  if (loading) return loading;
+  var cached = store(CACHE);
+  if (cached && Date.now() - cached.time < TTL && cached.items) { posts = finish(cached.items); return Promise.resolve(posts); }
+  var api = "https://api.github.com/repos/" + REPO + "/contents/" + POSTS_DIR + "?ref=" + BRANCH;
+  loading = fetch(api, { headers: { Accept: "application/vnd.github+json" } })
+    .then(function (r) { if (!r.ok) throw new Error("GitHub API " + r.status); return r.json(); })
+    .then(function (files) {
+      var old = {};
+      ((cached && cached.items) || []).forEach(function (p) { old[p.sha] = p; });
+      var list = files.filter(function (f) { return f.type === "file" && parseName(f.name); });
+      return Promise.all(list.map(function (f) {
+        if (old[f.sha]) return old[f.sha];
+        return fetch(f.download_url).then(function (r) { return r.text(); }).then(function (txt) {
+          var fm = frontMatter(txt), info = parseName(f.name);
+          bodies[info.id] = fm;
+          var words = fm.body.replace(/[#*_`>$\\-]/g, " ").split(/\s+/).filter(Boolean).length;
+          return { id: info.id, sha: f.sha, url: f.download_url, date: info.date, topic: info.topic,
+            title: fm.meta.title || info.slug.replace(/-/g, " "), summary: fm.meta.summary || "",
+            external: fm.meta.external || "", source: fm.meta.source || "", minutes: Math.max(1, Math.round(words / 220)) };
+        });
+      }));
+    })
+    .then(function (items) { store(CACHE, { time: Date.now(), items: items }); posts = finish(items); return posts; })
+    .catch(function (err) {
+      if (cached && cached.items) { posts = finish(cached.items); return posts; }
+      loading = null; throw err;
+    });
+  return loading;
+}
+function finish(items) {
+  var t = today();
+  return items.filter(function (p) { return p.date <= t; })   // future-dated posts appear on their date
+    .sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : a.id < b.id ? 1 : -1; });
+}
+function getBody(p) {
+  if (bodies[p.id]) return Promise.resolve(bodies[p.id]);
+  return fetch(p.url).then(function (r) { return r.text(); }).then(function (t) { return (bodies[p.id] = frontMatter(t)); });
+}
+
+/* ============================================================================
+   Markdown with LaTeX ($…$ inline, $$…$$ display) and the γGN figure
+   ========================================================================== */
+function renderMarkdown(md) {
+  var math = [];
+  md = md.replace(/\$\$([\s\S]+?)\$\$/g, function (_, tex) { math.push([tex, true]); return "\n\nMATHBLOCK" + (math.length - 1) + "X\n\n"; });
+  md = md.replace(/(^|[^\\$])\$(?!\s)([^$\n]+?)\$(?!\d)/g, function (_, pre, tex) { math.push([tex, false]); return pre + "MATHINLINE" + (math.length - 1) + "X"; });
+  var html = window.marked ? window.marked.parse(md, { gfm: true }) : "<pre>" + esc(md) + "</pre>";
+  function tex(i) {
+    var m = math[i];
+    if (!window.katex) return esc(m[0]);
+    try { return window.katex.renderToString(m[0], { displayMode: m[1], throwOnError: false }); } catch (e) { return esc(m[0]); }
+  }
+  html = html.replace(/<p>MATHBLOCK(\d+)X<\/p>/g, function (_, i) { return '<div class="math-display">' + tex(+i) + "</div>"; });
+  html = html.replace(/MATHBLOCK(\d+)X/g, function (_, i) { return '<div class="math-display">' + tex(+i) + "</div>"; });
+  html = html.replace(/MATHINLINE(\d+)X/g, function (_, i) { return tex(+i); });
+  return html;
+}
+
+/* ---------------------------------------------------------------------------
+   γ-order generalized normal (Kitsos & Tavoularis, 2009), location 0, scale 1:
+     f(x) = C exp{ -((γ-1)/γ) |x|^{γ/(γ-1)} },  C = a^{1/b} / (2 Γ(1 + 1/b)),
+     a = (γ-1)/γ,  b = γ/(γ-1).   γ→1+: Uniform;  γ=2: Normal;  γ→∞: Laplace.
+   In a post:  <div data-gn="full" data-start="3" data-title="…" data-note="…"></div>
+   ------------------------------------------------------------------------- */
+var LG = 7, LC = [0.99999999999980993, 676.5203681218851, -1259.1392167224028, 771.32342877765313,
+  -176.61502916214059, 12.507343278686905, -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
+function gammaFn(z) {
+  if (z < 0.5) return Math.PI / (Math.sin(Math.PI * z) * gammaFn(1 - z));
+  z -= 1; var x = LC[0];
+  for (var i = 1; i < LG + 2; i++) x += LC[i] / (z + i);
+  var t = z + LG + 0.5;
+  return Math.sqrt(2 * Math.PI) * Math.pow(t, z + 0.5) * Math.exp(-t) * x;
+}
+function gammaQ(s, x) { // regularised upper incomplete gamma
+  if (x <= 0) return 1;
+  var lg = Math.log(gammaFn(s));
+  if (x < s + 1) {
+    var sum = 1 / s, term = sum, n = s;
+    for (var i = 0; i < 500; i++) { n += 1; term *= x / n; sum += term; if (Math.abs(term) < Math.abs(sum) * 1e-14) break; }
+    return 1 - sum * Math.exp(-x + s * Math.log(x) - lg);
+  }
+  var b = x + 1 - s, c = 1e300, d = 1 / b, h = d;
+  for (var k = 1; k < 500; k++) {
+    var an = -k * (k - s); b += 2;
+    d = an * d + b; if (Math.abs(d) < 1e-300) d = 1e-300;
+    c = b + an / c; if (Math.abs(c) < 1e-300) c = 1e-300;
+    d = 1 / d; var del = d * c; h *= del; if (Math.abs(del - 1) < 1e-14) break;
+  }
+  return Math.exp(-x + s * Math.log(x) - lg) * h;
+}
+function gnParams(G) { var a = (G - 1) / G, b = G / (G - 1); return { a: a, b: b, c: Math.pow(a, 1 / b) / (2 * gammaFn(1 + 1 / b)) }; }
+function gnPdf(G) { var p = gnParams(G); return function (x) { return p.c * Math.exp(-p.a * Math.pow(Math.abs(x), p.b)); }; }
+function gnKurt(G) { var b = G / (G - 1); return gammaFn(5 / b) * gammaFn(1 / b) / Math.pow(gammaFn(3 / b), 2) - 3; }
+function gnTail(G, k) { var p = gnParams(G), sd = Math.pow(p.a, -1 / p.b) * Math.sqrt(gammaFn(3 / p.b) / gammaFn(1 / p.b)); return gammaQ(1 / p.b, p.a * Math.pow(k * sd, p.b)); }
+var NORMAL = gnPdf(2), NORMAL_T3 = gnTail(2, 3);
+var LO = Math.log(0.05), HI = Math.log(19);
+function toG(v) { return 1 + Math.exp(LO + (HI - LO) * v / 1000); }
+function toSlider(G) { return Math.round(1000 * (Math.log(G - 1) - LO) / (HI - LO)); }
+function tok(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+var liveFigures = [];
+
+function gnFigure(opts) {
+  var full = !!opts.full;
+  var fig = document.createElement("figure");
+  fig.className = "gn" + (full ? " full" : "");
+  fig.innerHTML =
+    '<div class="gn-head"><span class="gn-title">' + esc(opts.title || "The γ-order generalized normal") + '</span>' +
+    '<span class="gn-legend"><span><i></i>γGN</span><span><i class="ref"></i>Normal</span></span></div>' +
+    '<canvas role="img" aria-label="Density of the gamma-order generalized normal distribution compared with the standard normal"></canvas>' +
+    '<div class="gn-row"><span class="label">Shape parameter γ</span>' + (full ? '<button type="button" class="gn-toggle" aria-pressed="false">Log scale</button>' : "") + '</div>' +
+    '<input type="range" min="0" max="1000" aria-label="Shape parameter gamma">' +
+    '<div class="gn-ticks"><button type="button" data-g="1.05">Uniform · γ→1</button><button type="button" data-g="2">Normal · γ=2</button><button type="button" data-g="20">Laplace · γ→∞</button></div>' +
+    '<div class="gn-readout" aria-live="polite"><div><b data-o="g"></b><span>γ</span></div><div><b data-o="b"></b><span>exponent γ/(γ−1)</span></div>' +
+    '<div><b data-o="k"></b><span>excess kurtosis</span></div>' + (full ? '<div><b data-o="r"></b><span>P(|X| &gt; 3 sd) vs Normal</span></div>' : "") + '</div>' +
+    (opts.note ? '<figcaption class="gn-note">' + esc(opts.note) + '</figcaption>' : "");
+  var cv = $("canvas", fig), ctx = cv.getContext("2d"), sl = $("input", fig), btns = fig.querySelectorAll(".gn-ticks button"), logBtn = $(".gn-toggle", fig);
+  var G = 2, logScale = false;
+  function out(k, v) { var el = $('[data-o="' + k + '"]', fig); if (el) el.textContent = v; }
+  function draw() {
+    var dpr = window.devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
+    if (!w || !h) return;
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, h);
+    var accent = tok("--accent"), muted = tok("--muted"), rule = tok("--rule");
+    var padL = logScale ? 34 : 4, padR = 4, padT = 8, padB = 22, X0 = -4, X1 = 4, YMAX = 0.62, LMIN = -6, LMAX = 0;
+    function sx(x) { return padL + (x - X0) / (X1 - X0) * (w - padL - padR); }
+    function sy(y) {
+      if (logScale) { var l = Math.max(LMIN, Math.min(LMAX, Math.log10(Math.max(y, 1e-12)))); return h - padB - (l - LMIN) / (LMAX - LMIN) * (h - padT - padB); }
+      return h - padB - Math.min(y, YMAX) / YMAX * (h - padT - padB);
+    }
+    var base = h - padB, i, x;
+    ctx.font = '11px "IBM Plex Mono", ui-monospace, monospace'; ctx.strokeStyle = rule; ctx.fillStyle = muted; ctx.lineWidth = 1;
+    if (logScale) {
+      ctx.textAlign = "right";
+      for (var e = LMIN; e <= LMAX; e += 2) { var yy = Math.round(sy(Math.pow(10, e))) + .5; ctx.beginPath(); ctx.moveTo(padL, yy); ctx.lineTo(w - padR, yy); ctx.stroke(); ctx.fillText(e === 0 ? "1" : "1e" + e, padL - 6, yy + 4); }
+    }
+    ctx.beginPath(); ctx.moveTo(sx(X0), base + .5); ctx.lineTo(sx(X1), base + .5); ctx.stroke();
+    ctx.textAlign = "center";
+    for (var t = -3; t <= 3; t++) { ctx.beginPath(); ctx.moveTo(Math.round(sx(t)) + .5, base); ctx.lineTo(Math.round(sx(t)) + .5, base + 4); ctx.stroke(); ctx.fillText(t === 0 ? "0" : (t > 0 ? t : "−" + (-t)), sx(t), h - 6); }
+    var f = gnPdf(G), N = 480;
+    if (!logScale) {
+      ctx.beginPath(); ctx.moveTo(sx(X0), base);
+      for (i = 0; i <= N; i++) { x = X0 + (X1 - X0) * i / N; ctx.lineTo(sx(x), sy(f(x))); }
+      ctx.lineTo(sx(X1), base); ctx.closePath(); ctx.globalAlpha = 0.14; ctx.fillStyle = accent; ctx.fill(); ctx.globalAlpha = 1;
+    }
+    ctx.setLineDash([4, 4]); ctx.strokeStyle = muted; ctx.lineWidth = 1.25; ctx.beginPath();
+    for (i = 0; i <= N; i++) { x = X0 + (X1 - X0) * i / N; var yn = sy(NORMAL(x)); i ? ctx.lineTo(sx(x), yn) : ctx.moveTo(sx(x), yn); }
+    ctx.stroke(); ctx.setLineDash([]);
+    ctx.strokeStyle = accent; ctx.lineWidth = 2; ctx.beginPath();
+    var started = false;
+    for (i = 0; i <= N; i++) { x = X0 + (X1 - X0) * i / N; var v = f(x); if (logScale && v < 1e-12) { started = false; continue; } var yg = sy(v); if (!started) { ctx.moveTo(sx(x), yg); started = true; } else ctx.lineTo(sx(x), yg); }
+    ctx.stroke();
+  }
+  function update() {
+    G = toG(+sl.value); if (Math.abs(G - 2) < 0.035) G = 2;
+    out("g", G >= 10 ? G.toFixed(1) : G.toFixed(2));
+    out("b", (G / (G - 1)).toFixed(2));
+    var k = gnKurt(G); out("k", Math.abs(k) < 0.005 ? "0.00" : (k > 0 ? "+" : "−") + Math.abs(k).toFixed(2));
+    if (full) { var r = gnTail(G, 3) / NORMAL_T3; out("r", r < 1e-4 ? "≈ 0×" : r.toFixed(r < 10 ? 2 : 1) + "×"); }
+    sl.setAttribute("aria-valuetext", "gamma " + G.toFixed(2));
+    btns.forEach(function (b) { b.setAttribute("aria-pressed", String(Math.abs(toSlider(+b.dataset.g) - +sl.value) <= 6)); });
+    draw();
+  }
+  sl.addEventListener("input", update);
+  btns.forEach(function (b) { b.addEventListener("click", function () { sl.value = toSlider(+b.dataset.g); update(); }); });
+  if (logBtn) logBtn.addEventListener("click", function () { logScale = !logScale; logBtn.setAttribute("aria-pressed", String(logScale)); draw(); });
+  if ("ResizeObserver" in window) new ResizeObserver(draw).observe(cv);
+  sl.value = toSlider(+(opts.start || 2));
+  fig._draw = draw; liveFigures.push(fig);
+  setTimeout(update, 0);
+  return fig;
+}
+function redrawFigures() { liveFigures = liveFigures.filter(function (f) { return document.body.contains(f); }); liveFigures.forEach(function (f) { f._draw(); }); }
+window.addEventListener("resize", redrawFigures);
+try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", redrawFigures); } catch (e) { }
+new MutationObserver(redrawFigures).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(redrawFigures);
+
+/* ============================================================================
+   Views
+   ========================================================================== */
+function entryHTML(p, showTopic) {
+  var href = p.external || "#/" + p.id;
+  var ext = p.external ? ' target="_blank" rel="noopener"' : "";
+  return '<li class="entry"><time datetime="' + p.date + '">' + fmtDate(p.date) + '</time><div>' +
+    '<h3><a href="' + esc(href) + '"' + ext + '>' + esc(p.title) + '</a></h3>' +
+    (p.summary ? "<p>" + esc(p.summary) + "</p>" : "") +
+    '<div class="where"><span class="src">' + (p.external ? esc(p.source || "External") + " ↗" : p.minutes + " min read") + '</span>' +
+    (showTopic ? '<span class="label"><a href="#/' + topicOf(p.topic) + '">' + esc(topicLabel(p.topic)) + '</a></span>' : "") +
+    '</div></div></li>';
+}
+function block(label, inner) { return '<section class="block"><div class="wrap block-grid"><div class="rail"><span class="label">' + label + '</span></div><div>' + inner + '</div></div></section>'; }
+function status(msg) { return '<p class="status">' + msg + '</p>'; }
+var LOAD_FAIL = 'The article list could not be loaded right now. Read the articles on <a href="https://jorgequiterio.medium.com" target="_blank" rel="noopener">Medium</a> or in the <a href="https://github.com/' + REPO + '/tree/' + BRANCH + '/' + POSTS_DIR + '" target="_blank" rel="noopener">posts folder on GitHub</a>.';
+
+function viewHome() {
+  document.title = "Jorge Quitério · Mathematics, science, AI and leadership";
+  view.innerHTML =
+    '<div class="wrap hero"><div class="hero-grid"><div>' +
+      '<span class="label">Luxembourg · Mathematics · Security · Software</span>' +
+      "<h1>Securing Europe's satellite infrastructure. <em>Modelling what the normal distribution misses.</em></h1>" +
+      "<p class=\"lede\">I'm Jorge Quitério. I work in information security for European space infrastructure at SES in Luxembourg, after two decades in software engineering, open source and DevSecOps.</p>" +
+      '<p class="lede">I am also a doctoral candidate in Applied Mathematics &amp; Modelling at Universidade Aberta. Here I write about mathematics, science, AI and leadership, and about the society all of this is meant to serve.</p>' +
+      '<div class="actions"><a class="btn" href="#/math">Start with Math</a><a class="btn ghost" href="#/about">About me</a></div>' +
+    '</div><div id="hero-fig"></div></div></div>' +
+    block("Latest", '<h2>Recent writing</h2><div id="latest">' + status("Loading articles…") + '</div>') +
+    block("Topics", '<h2>By topic</h2><p class="intro">Five topics, in the order I care about them most.</p><div class="topics" id="topics"></div>');
+  $("#hero-fig").appendChild(gnFigure({ note: "One extra parameter moves the error law from Uniform through Normal to Laplace. My research lets the data estimate γ in autoregressive models, instead of assuming γ = 2." }));
+  $("#topics").innerHTML = TOPICS.map(function (t) {
+    return '<div class="topic" data-topic="' + t.id + '"><h3><a href="#/' + t.id + '">' + t.title + '</a></h3><p>' + esc(t.blurb) + '</p><ul><li class="none">Loading…</li></ul></div>';
+  }).join("");
+  loadPosts().then(function (all) {
+    $("#latest").innerHTML = all.length ? '<ol class="entries">' + all.slice(0, 6).map(function (p) { return entryHTML(p, true); }).join("") + "</ol>" : status("No articles yet.");
+    TOPICS.forEach(function (t) {
+      var list = all.filter(function (p) { return topicOf(p.topic) === t.id; });
+      var ul = $('[data-topic="' + t.id + '"] ul');
+      ul.innerHTML = list.length ? list.slice(0, 4).map(function (p) {
+        var ext = p.external ? ' target="_blank" rel="noopener"' : "";
+        return '<li><a href="' + esc(p.external || "#/" + p.id) + '"' + ext + '>' + esc(p.title) + (p.external ? " ↗" : "") + '</a><time datetime="' + p.date + '">' + fmtDate(p.date) + '</time></li>';
+      }).join("") + (list.length > 4 ? '<li><a href="#/' + t.id + '">All ' + list.length + ' in ' + t.title + ' →</a></li>' : "")
+        : '<li class="none">First article coming soon.</li>';
+    });
+  }).catch(function () { $("#latest").innerHTML = status(LOAD_FAIL); $("#topics").querySelectorAll("ul").forEach(function (u) { u.innerHTML = ""; }); });
+}
+
+function viewTopic(t) {
+  document.title = t.title + " · Jorge Quitério";
+  view.innerHTML = '<div class="wrap"><header class="page-head"><span class="label">Topic</span><h1>' + t.title + '</h1><p class="standfirst">' + esc(t.blurb) + '</p></header></div>' +
+    block("Articles", '<div id="list">' + status("Loading articles…") + "</div>");
+  loadPosts().then(function (all) {
+    var list = all.filter(function (p) { return topicOf(p.topic) === t.id; });
+    $("#list").innerHTML = list.length ? '<ol class="entries">' + list.map(function (p) { return entryHTML(p, t.id === "other"); }).join("") + "</ol>"
+      : status("The first article in " + t.title + " is on its way. Follow on <a href=\"https://jorgequiterio.medium.com\" target=\"_blank\" rel=\"noopener\">Medium</a> to be notified.");
+  }).catch(function () { $("#list").innerHTML = status(LOAD_FAIL); });
+}
+
+function viewPost(id) {
+  view.innerHTML = '<div class="wrap">' + '<div class="article-head">' + status("Loading article…") + "</div></div>";
+  loadPosts().then(function (all) {
+    var p = all.filter(function (x) { return x.id === id; })[0];
+    if (!p) return viewMissing();
+    document.title = p.title + " · Jorge Quitério";
+    var head = '<header class="article-head"><span class="label"><a href="#/' + topicOf(p.topic) + '">' + esc(topicLabel(p.topic)) + '</a></span><h1>' + esc(p.title) + '</h1>' +
+      (p.summary ? '<p class="dek">' + esc(p.summary) + "</p>" : "") +
+      '<div class="byline"><span>Jorge Quitério</span><time datetime="' + p.date + '">' + fmtDate(p.date, true) + '</time>' +
+      (p.external ? "<span>Published on " + esc(p.source || "an external site") + "</span>" : "<span>" + p.minutes + " min read</span>") + "</div></header>";
+    if (p.external) {
+      view.innerHTML = '<article class="wrap">' + head + '<div class="external-card">' + (p.summary ? "<p>" + esc(p.summary) + "</p>" : "") +
+        '<a class="btn" href="' + esc(p.external) + '" rel="noopener">Read on ' + esc(p.source || "the original site") + ' ↗</a></div></article>';
+      return;
+    }
+    return getBody(p).then(function (fm) {
+      var related = all.filter(function (x) { return x.id !== p.id && topicOf(x.topic) === topicOf(p.topic); })[0];
+      view.innerHTML = '<article class="wrap">' + head + '<div class="prose">' + renderMarkdown(fm.body) + '</div>' +
+        '<footer class="article-foot"><a href="#/' + topicOf(p.topic) + '">More in ' + esc(topicLabel(topicOf(p.topic))) + '</a>' +
+        (related ? '<a href="' + esc(related.external || "#/" + related.id) + '">' + esc(related.title) + ' →</a>' : "") + "</footer></article>";
+      view.querySelectorAll("[data-gn]").forEach(function (el) {
+        el.replaceWith(gnFigure({ full: el.dataset.gn === "full", start: el.dataset.start, title: el.dataset.title, note: el.dataset.note }));
+      });
+    });
+  }).catch(function () { view.innerHTML = '<div class="wrap article-head">' + status(LOAD_FAIL) + "</div>"; });
+}
+
+function viewAbout() {
+  document.title = "About · Jorge Quitério";
+  view.innerHTML = '<div class="wrap"><header class="page-head"><span class="label">About</span><h1>Jorge Quitério</h1>' +
+    '<p class="standfirst">Information security, software engineering and applied mathematics, from Luxembourg.</p></header></div>' +
+    block("Biography",
+      '<div class="about-grid"><div class="bio">' +
+      "<p>I work in information security for European space infrastructure at SES in Luxembourg. Before that I spent twenty years in software: Linux and network engineering, an open-source services company of my own, DevOps consulting for European organisations, and several years building and leading platform and DevSecOps teams for satellite software.</p>" +
+      "<p>Alongside that work I am a doctoral candidate in Applied Mathematics &amp; Modelling at Universidade Aberta, where my research concerns autoregressive models with non-normal errors. I hold a master's diploma in Open Source Software from ISCTE, completed MIT's programme in Management of Technology, and am studying for an MBA at the Luxembourg School of Business.</p>" +
+      "<p>The views on this site are my own and do not represent any employer or institution.</p>" +
+      '</div><img class="portrait" src="profile.png" alt="Portrait of Jorge Quitério" width="240" height="240"></div>') +
+    block("Elsewhere",
+      '<h2>Follow and contact</h2><ul class="elsewhere">' +
+      '<li><a href="https://jorgequiterio.medium.com" target="_blank" rel="me noopener">Medium</a><span>Articles</span></li>' +
+      '<li><a href="https://www.linkedin.com/in/quiteriojorge" target="_blank" rel="me noopener">LinkedIn</a><span>Professional updates</span></li>' +
+      '<li><a href="https://github.com/jquiterio" target="_blank" rel="me noopener">GitHub</a><span>Code</span></li></ul>' +
+      '<div class="contact-row"><span class="email" id="email">jorge@quiterio.eu</span><button class="btn" type="button" id="copy">Copy address</button><span class="copied" id="copied" aria-live="polite"></span></div>');
+  $("#copy").addEventListener("click", function () {
+    var em = $("#email"), msg = $("#copied");
+    function fallback() { var r = document.createRange(); r.selectNodeContents(em); var s = getSelection(); s.removeAllRanges(); s.addRange(r); msg.textContent = "Selected. Press Ctrl/⌘ + C to copy."; }
+    try { navigator.clipboard.writeText(em.textContent).then(function () { msg.textContent = "Copied."; }, fallback); } catch (e) { fallback(); }
+  });
+}
+
+function viewMissing() {
+  document.title = "Not found · Jorge Quitério";
+  view.innerHTML = '<div class="wrap"><header class="page-head"><span class="label">Not found</span><h1>This page does not exist</h1>' +
+    '<p class="standfirst">The article may not be published yet, or its address has changed.</p><div class="actions"><a class="btn" href="#/">Home</a></div></header></div>';
+}
+
+/* ============================================================================
+   Router: #/  #/math  #/about  #/2026-09-29-math-beyond-the-bell-curve
+   ========================================================================== */
+var NAV = TOPICS.map(function (t) { return { href: "#/" + t.id, label: t.title, id: t.id }; }).concat([{ href: "#/about", label: "About", id: "about" }]);
+$("#nav").innerHTML = NAV.map(function (n) { return '<a href="' + n.href + '" data-id="' + n.id + '">' + n.label + "</a>"; }).join("");
+$("#foot-nav").innerHTML = NAV.map(function (n) { return '<a href="' + n.href + '">' + n.label + "</a>"; }).join("");
+$("#year").textContent = new Date().getFullYear();
+
+function route() {
+  var h = decodeURIComponent(location.hash.replace(/^#\/?/, "")).replace(/\/$/, "");
+  var active = h;
+  if (!h) viewHome();
+  else if (h === "about") viewAbout();
+  else if (TOPICS.some(function (t) { return t.id === h; })) viewTopic(TOPICS.filter(function (t) { return t.id === h; })[0]);
+  else if (parseName(h + ".md")) { active = topicOf(parseName(h + ".md").topic); viewPost(h); }
+  else viewMissing();
+  document.querySelectorAll("#nav a").forEach(function (a) { if (a.dataset.id === active) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  window.scrollTo(0, 0);
+}
+window.addEventListener("hashchange", route);
+if (document.readyState === "complete") route(); else window.addEventListener("load", route);
+})();
 </script>
 </body>
 </html>
