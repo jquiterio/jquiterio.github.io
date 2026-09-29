@@ -1,0 +1,19 @@
+---
+layout: default
+---
+{%- assign sec = site.data.sections | where: "id", page.section | first -%}
+<article class="wrap">
+  <header class="article-head">
+    {%- if sec %}<span class="label"><a href="{{ sec.url | relative_url }}">{{ sec.title }}</a></span>{% endif %}
+    <h1>{{ page.title }}</h1>
+    <div class="byline">
+      <span>{{ site.author.name }}</span>
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %B %Y" }}</time>
+      <span>Published on {{ page.source | default: "Medium" }}</span>
+    </div>
+  </header>
+  <div class="external-card">
+    {%- if page.summary %}<p>{{ page.summary }}</p>{% endif %}
+    <a class="btn" href="{{ page.external_url }}" rel="noopener">Read on {{ page.source | default: "Medium" }} ↗</a>
+  </div>
+</article>

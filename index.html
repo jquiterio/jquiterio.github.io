@@ -1,206 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jorge Quitério</title>
-
-    <meta name="description" content="Personal homepage. Links to blog, GitHub, LinkedIn, and other public profiles.">
-    <meta name="color-scheme" content="light dark">
-
-    <style>
-        :root {
-            --bg: #ffffff;
-            --bg-gradient: linear-gradient(135deg, #f8fafc, #e2e8f0);
-            --card: rgba(255, 255, 255, 0.85);
-            --text: #0f172a;
-            --muted: #64748b;
-            --accent: #0284c7;
-            --accent-hover: #0369a1;
-            --border: rgba(15, 23, 42, 0.1);
-            --shadow: rgba(0, 0, 0, 0.08);
-        }
-        
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg: #0f172a;
-                --bg-gradient: linear-gradient(135deg, #0f172a, #1e293b);
-                --card: rgba(30, 41, 59, 0.85);
-                --text: #f8fafc;
-                --muted: #94a3b8;
-                --accent: #38bdf8;
-                --accent-hover: #0ea5e9;
-                --border: rgba(148, 163, 184, 0.15);
-                --shadow: rgba(0, 0, 0, 0.35);
-            }
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Inter, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-            background: var(--bg-gradient);
-            color: var(--text);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 700px;
-        }
-
-        .card {
-            background: var(--card);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 3rem;
-            text-align: center;
-            box-shadow: 0 20px 40px var(--shadow);
-        }
-
-        .avatar-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .avatar {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-        }
-        
-        .avatar-image {
-            object-fit: cover;
-            display: none;
-        }
-        
-        .avatar-fallback {
-            background: linear-gradient(135deg, var(--accent), #818cf8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: white;
-        }
-
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .subtitle,
-        footer {
-            color: var(--muted);
-        }
-
-        .links {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: var(--text);
-            background: transparent;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1rem;
-            font-weight: 600;
-            transition: all 0.25s ease;
-        }
-        
-        .link:hover {
-            background: var(--accent);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        footer {
-            margin-top: 2rem;
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 600px) {
-            .card {
-                padding: 2rem;
-            }
-
-            h1 {
-                font-size: 1.7rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <div class="card">
-
-        <div class="avatar-container">
-            <img id="profile-photo" class="avatar avatar-image" src="profile.png" alt="Jorge Quitério">
-            <div id="avatar-fallback" class="avatar avatar-fallback">JQ</div>
-        </div>
-
-        <h1>Jorge Quitério</h1>
-
-        <p class="subtitle">
-            Technology Enthusiast • Lifelong Learner
-        </p>
-
-        <div class="links">
-            <a class="link" href="https://linkedin.com/in/quiteriojorge" target="_blank">
-                💼 LinkedIn
-            </a>
-
-            <a class="link" href="https://github.com/jquiterio" target="_blank">
-                💻 GitHub
-            </a>
-
-            <a class="link" href="https://medium.com/@jorgequiterio" target="_blank">
-                📚 Articles
-            </a>
-
-            <a class="link" href="mailto:jorge@quiterio.eu">
-                ✉️ Contact
-            </a>
-
-        </div>
-
-        <footer>
-            © 2026 Jorge Quitério
-        </footer>
-
+---
+layout: default
+title: Home
+gn: true
+description: Jorge Quitério writes on life and society in Europe, applied mathematics, information security for space infrastructure, software engineering and leadership.
+---
+<div class="wrap hero">
+  <div class="hero-grid">
+    <div>
+      <span class="label">Luxembourg · Security · Software · Statistics</span>
+      <h1>Securing Europe's satellite infrastructure. <em>Modelling what the normal distribution misses.</em></h1>
+      <p class="lede">I'm Jorge Quitério. I work in information security for European space infrastructure at SES in Luxembourg, after two decades in software engineering, open source and DevSecOps.</p>
+      <p class="lede">I am also a doctoral candidate in Applied Mathematics &amp; Modelling at Universidade Aberta. This site collects what I write across those fields, and about the society they serve.</p>
+      <div class="hero-actions">
+        <a class="btn" href="{{ '/writing/' | relative_url }}">Read the writing</a>
+        <a class="btn ghost" href="{{ '/about/' | relative_url }}">About me</a>
+      </div>
     </div>
+    {% include gamma-gn.html note="One extra parameter moves the error law from Uniform through Normal to Laplace. My research lets the data estimate γ in autoregressive models, instead of assuming γ = 2." %}
+  </div>
 </div>
-<script>
-    const photo = document.getElementById('profile-photo');
-    const fallback = document.getElementById('avatar-fallback');
 
-    photo.onload = () => {
-        photo.style.display = 'block';
-        fallback.style.display = 'none';
-    };
+<section class="block" aria-labelledby="sections-h">
+  <div class="wrap block-grid">
+    <div class="rail"><span class="label">Sections</span></div>
+    <div>
+      <h2 id="sections-h">Five fields, one line of thought</h2>
+      <p class="intro">Security, engineering and statistics are different ways of reasoning about risk and evidence. Each has its own section, alongside leadership and the society all of this work is meant to serve.</p>
+      <div class="sections">
+        {%- for s in site.data.sections %}
+        {%- assign n = site.posts | where: "section", s.id | size %}
+        <a class="section-card" href="{{ s.url | relative_url }}">
+          <span class="label">{{ s.topics | slice: 0, 2 | join: " · " }}</span>
+          <h3>{{ s.title }}</h3>
+          <p>{{ s.summary }}</p>
+          <span class="meta-row"><span class="go">Open section →</span>{% if n > 0 %}<span class="label">{{ n }} {% if n == 1 %}article{% else %}articles{% endif %}</span>{% endif %}</span>
+        </a>
+        {%- endfor %}
+        <a class="section-card" href="{{ '/projects/' | relative_url }}">
+          <span class="label">Research · Software</span>
+          <h3>Projects</h3>
+          <p>Reproducible studies and software, where the mathematics meets a real system.</p>
+          <span class="meta-row"><span class="go">Open section →</span><span class="label">{{ site.data.projects.size }} projects</span></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    photo.onerror = () => {
-        photo.style.display = 'none';
-        fallback.style.display = 'flex';
-    };
-</script>
-</body>
-</html>
+<section class="block" aria-labelledby="latest-h">
+  <div class="wrap block-grid">
+    <div class="rail"><span class="label">Latest</span></div>
+    <div>
+      <h2 id="latest-h">Recent writing</h2>
+      <ol class="entries">
+        {%- for p in site.posts limit: 6 %}{% include entry.html post=p show_section=true %}{% endfor %}
+      </ol>
+      <div class="hero-actions">
+        <a class="btn ghost" href="{{ '/writing/' | relative_url }}">All writing</a>
+        <a class="btn ghost" href="{{ site.social.medium }}" target="_blank" rel="noopener">Follow on Medium ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" aria-labelledby="about-h">
+  <div class="wrap block-grid">
+    <div class="rail"><span class="label">About</span></div>
+    <div class="about-strip">
+      <img src="{{ '/profile.png' | relative_url }}" alt="Portrait of Jorge Quitério" width="120" height="120" loading="lazy">
+      <div>
+        <h2 id="about-h">Engineer, security manager, statistician in training</h2>
+        <p class="intro">Portuguese by birth, based in Luxembourg, working across European programmes. I write to think clearly and to share what I learn.</p>
+        <p style="margin-top:14px"><a href="{{ '/about/' | relative_url }}">More about me →</a></p>
+      </div>
+    </div>
+  </div>
+</section>

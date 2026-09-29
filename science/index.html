@@ -1,0 +1,47 @@
+---
+layout: section
+section: science
+title: Science
+gn: true
+headline: Applied mathematics for data that is not normal
+description: Applied mathematics and statistics — heavy-tailed time series, the γ-order generalized normal distribution, information measures and stochastic optimisation.
+standfirst:
+  - Many statistical models assume at some point that errors are normal. Financial returns, sensor noise and network delays often are not. I study models that let the data decide.
+  - My doctoral research at Universidade Aberta brings the γ-order generalized normal distribution into autoregressive time-series models. The work is done in R and written up reproducibly.
+focus:
+  - title: Heavy-tailed time series
+    text: Autoregressive and state-space models whose errors have heavier or lighter tails than the normal, and what that changes for estimation, forecasting and risk.
+  - title: Information measures
+    text: Fisher's information, entropy, and the Kullback–Leibler and Hellinger distances as tools to compare fitted models and to measure how far data sit from normality.
+  - title: Optimisation under uncertainty
+    text: Stochastic programming, simheuristics and agile optimisation for decisions that must be made before the uncertainty resolves, such as routing in dynamic networks.
+  - title: Statistical computing
+    text: Likelihood estimation, Monte Carlo simulation and reproducible reporting in R, with the code published alongside the results.
+questions:
+  - How should the shape parameter γ be estimated when observations are dependent rather than independent?
+  - How far from normal does an error distribution have to be before it changes a forecast or a risk measure in a way that matters?
+  - Which information measure is the most useful guide for choosing between competing error laws?
+  - When does a fast heuristic lose less than the exact method costs in time?
+---
+<section class="block" aria-labelledby="research-h">
+  <div class="wrap block-grid">
+    <div class="rail"><span class="label">Research</span></div>
+    <div>
+      <h2 id="research-h">Adaptive γGN for two stochastic models</h2>
+      <p class="intro">The autoregressive model and the signal process, with errors drawn from the γ-order generalized normal instead of the normal. Supervised by Prof. Christos P. Kitsos and Prof. Amílcar Oliveira, in the doctoral programme in Applied Mathematics &amp; Modelling at Universidade Aberta.</p>
+      <div class="research-grid">
+        <ol class="principles tight">
+          <li><div><b>Classical AR models</b><span>AR(1) and AR(p) with Gaussian errors: estimation, Fisher's information, diagnostics.</span></div></li>
+          <li><div><b>The γGN family</b><span>Properties, maximum likelihood estimation, and distances to the normal.</span></div></li>
+          <li><div><b>γ-order autoregression</b><span>AR(1) with γGN errors, with γ estimated from the data. A simulation study and financial series; γ = 2 is the reference.</span></div></li>
+          <li><div><b>Extensions</b><span>AR(p) and the signal process, once the AR(1) case is settled.</span></div></li>
+        </ol>
+        {% include gamma-gn.html note="Move γ to see how the error law changes. Values of γ between 1 and 2 give lighter tails than the normal; values above 2 give heavier tails." %}
+      </div>
+      <div class="hero-actions">
+        <a class="btn ghost" href="{{ '/writing/2026/beyond-the-bell-curve/' | relative_url }}">Read the introduction to the γGN</a>
+        <a class="btn ghost" href="{{ '/projects/' | relative_url }}">Projects</a>
+      </div>
+    </div>
+  </div>
+</section>

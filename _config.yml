@@ -1,1 +1,53 @@
+# Site settings --------------------------------------------------------------
+title: Jorge Quitério
+tagline: Security, software and statistics
+description: >-
+  Writing by Jorge Quitério on life and society in Europe, applied mathematics,
+  information security for space infrastructure, software engineering and leadership.
+url: https://jorge.quiterio.eu
+baseurl: ""
+lang: en
+timezone: Europe/Luxembourg
+
+author:
+  name: Jorge Quitério
+  email: jorge@quiterio.eu
+
+social:
+  linkedin: https://www.linkedin.com/in/quiteriojorge
+  github: https://github.com/jquiterio
+  medium: https://jorgequiterio.medium.com
+
+# Medium username used by scripts/medium_sync.py
+medium_username: jorgequiterio
+
+# Content --------------------------------------------------------------------
+permalink: /writing/:year/:title/
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
+  syntax_highlighter_opts:
+    disable: true
+
+defaults:
+  - scope: { path: "", type: posts }
+    values: { layout: post }
+  - scope: { path: "" }
+    values: { layout: page }
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+feed:
+  path: feed.xml
+
 include: [".well-known"]
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - scripts
+  - vendor
+  - .github

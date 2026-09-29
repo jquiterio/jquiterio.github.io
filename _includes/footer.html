@@ -1,0 +1,19 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer">
+      {%- for s in site.data.sections %}
+      <a href="{{ s.url | relative_url }}">{{ s.title }}</a>
+      {%- endfor %}
+      <a href="{{ '/projects/' | relative_url }}">Projects</a>
+      <a href="{{ '/writing/' | relative_url }}">Writing</a>
+      <a href="{{ '/about/' | relative_url }}">About</a>
+    </nav>
+    <nav aria-label="Elsewhere">
+      <a href="{{ site.social.medium }}" rel="me noopener" target="_blank">Medium</a>
+      <a href="{{ site.social.linkedin }}" rel="me noopener" target="_blank">LinkedIn</a>
+      <a href="{{ site.social.github }}" rel="me noopener" target="_blank">GitHub</a>
+      <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+    </nav>
+    <span>© {{ site.time | date: '%Y' }} {{ site.author.name }} · Luxembourg</span>
+  </div>
+</footer>

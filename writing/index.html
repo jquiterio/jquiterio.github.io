@@ -1,0 +1,30 @@
+---
+title: Writing
+kicker: Writing
+headline: All writing
+standfirst: Articles published here and on Medium, across all sections. Filter by section, or subscribe through RSS or Medium.
+---
+<section class="block" aria-label="Articles">
+  <div class="wrap">
+    <div class="filters" data-filters role="group" aria-label="Filter by section">
+      <button type="button" data-filter="all" aria-pressed="true">All</button>
+      {%- for s in site.data.sections %}
+      {%- assign n = site.posts | where: "section", s.id | size %}
+      <button type="button" data-filter="{{ s.id }}" aria-pressed="false">{{ s.title }} <span class="mono">({{ n }})</span></button>
+      {%- endfor %}
+    </div>
+    {%- assign by_year = site.posts | group_by_exp: "p", "p.date | date: '%Y'" %}
+    {%- for y in by_year %}
+    <div data-year-group>
+      <h2 class="year-head">{{ y.name }}</h2>
+      <ol class="entries">
+        {%- for p in y.items %}{% include entry.html post=p show_section=true %}{% endfor %}
+      </ol>
+    </div>
+    {%- endfor %}
+    <div class="hero-actions">
+      <a class="btn ghost" href="{{ site.social.medium }}" target="_blank" rel="noopener">Follow on Medium ↗</a>
+      <a class="btn ghost" href="{{ '/feed.xml' | relative_url }}">RSS feed</a>
+    </div>
+  </div>
+</section>

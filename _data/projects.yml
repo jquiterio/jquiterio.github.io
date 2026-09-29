@@ -1,0 +1,54 @@
+# Projects shown on /projects/. Newest first. `link` and `writeup` are optional.
+
+- title: Route selection across a multi-orbit satellite network
+  kind: Optimisation
+  year: 2026
+  summary: >-
+    A network must commit to a primary route before it knows which links will fade or drop.
+    A two-stage stochastic program lowers expected latency by 16.9% compared with the
+    deterministic plan. A biased-randomised simheuristic recovers the same route in about
+    5 ms, against about 10 s for the exact mixed-integer program.
+  figures: ["Value of the stochastic solution 16.9%", "~2,000× faster than the MILP"]
+  stack: Python · PuLP/CBC · Monte Carlo simulation
+  section: science
+
+- title: Autoregressive models with γ-order generalized normal errors
+  kind: Doctoral research
+  year: 2026
+  summary: >-
+    Maximum likelihood for the γGN extended from independent to dependent observations,
+    starting with the AR(1) model. A simulation study and financial series test the method;
+    the normal case γ = 2 is the reference for every result.
+  stack: R · likelihood · simulation
+  section: science
+  writeup: /writing/2026/beyond-the-bell-curve/
+
+- title: Ocean variables along the Portuguese coast
+  kind: Time series
+  year: 2026
+  summary: >-
+    Monthly Copernicus Marine data from 1993 to 2014 for temperature, salinity and sea level
+    at paired coastal locations. A Python pipeline downloads and assembles the series; SARIMA
+    models in R are selected by stepwise AICc. A companion study compares VAR and SARIMA
+    forecasts with cointegration and Granger-causality tests.
+  stack: Python · R · forecast · vars · urca
+  section: science
+
+- title: One hundred and fifty years of the Rhine
+  kind: Spectral analysis
+  year: 2026
+  summary: >-
+    Annual flow of the Rhine from 1807 to 1956, analysed in the time domain and with spectral
+    and wavelet methods to locate periodicities that a single ARMA fit does not show.
+  stack: R · WaveletComp · wavelets
+  section: science
+
+- title: JSON in PostgreSQL, from SQL and from Go
+  kind: Software engineering
+  year: 2022
+  summary: >-
+    A two-part series on storing and querying semi-structured JSON data in PostgreSQL, first
+    in plain SQL and then from Go.
+  stack: PostgreSQL · Go · SQL
+  section: engineering
+  link: https://jorgequiterio.medium.com/how-to-manage-postgresql-json-data-with-go-golang-fb15883ef11e

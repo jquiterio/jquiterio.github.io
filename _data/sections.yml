@@ -1,0 +1,38 @@
+# Writing sections. `id` is what an article's `section:` front matter refers to.
+# `medium_tags` map Medium tags to this section (used by scripts/medium_sync.py).
+# The order here is the order used in navigation and on the home page.
+
+- id: society
+  title: Life & Society
+  url: /society/
+  summary: Europe, Luxembourg and how we live and work together.
+  topics: [Luxembourg, Europe, Society, Technology and work]
+  medium_tags: [society, philosophy, life, luxembourg, europe, european-union, culture, ethics, future-of-work, languages, migration, democracy]
+
+- id: science
+  title: Science
+  url: /science/
+  summary: Applied mathematics, statistics and models that fit real data.
+  topics: [Time series, Heavy tails, Information measures, Optimisation]
+  medium_tags: [mathematics, math, statistics, data-science, time-series, probability, research, science, applied-mathematics, econometrics, rstats, r, optimization, forecasting]
+
+- id: security
+  title: Security & Space
+  url: /security/
+  summary: Securing Europe's space infrastructure and its digital sovereignty.
+  topics: [Information security, Certification, Sovereignty, Space and defence]
+  medium_tags: [cybersecurity, information-security, security, infosec, space, satellite, satellites, defense, defence, sovereignty, digital-sovereignty, compliance, nis2, cryptography, iso-27001, risk-management]
+
+- id: engineering
+  title: Engineering & AI
+  url: /engineering/
+  summary: Software, platforms, DevSecOps and AI in the engineering lifecycle.
+  topics: [Software development, DevSecOps, Platforms, AI]
+  medium_tags: [software-development, programming, software-engineering, devops, devsecops, ai, artificial-intelligence, machine-learning, llm, go, golang, python, docker, kubernetes, linux, unix, postgresql, sql, json, cloud, open-source]
+
+- id: leadership
+  title: Leadership
+  url: /leadership/
+  summary: Leading technical teams, governance and decisions under uncertainty.
+  topics: [Engineering leadership, Governance, Strategy, Learning]
+  medium_tags: [leadership, management, strategy, teams, mba, organization, organisational-culture, careers, decision-making, governance]

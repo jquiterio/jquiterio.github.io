@@ -1,0 +1,26 @@
+---
+layout: default
+---
+{%- assign sec = site.data.sections | where: "id", page.section | first -%}
+{%- assign words = content | strip_html | number_of_words -%}
+{%- assign minutes = words | divided_by: 220 | plus: 1 -%}
+<article class="wrap">
+  <header class="article-head">
+    {%- if sec %}<span class="label"><a href="{{ sec.url | relative_url }}">{{ sec.title }}</a></span>{% endif %}
+    <h1>{{ page.title }}</h1>
+    {%- if page.summary %}<p class="dek">{{ page.summary }}</p>{% endif %}
+    <div class="byline">
+      <span>{{ site.author.name }}</span>
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %B %Y" }}</time>
+      <span>{{ minutes }} min read</span>
+    </div>
+  </header>
+  <div class="prose">
+    {{ content }}
+  </div>
+  <footer class="article-foot">
+    {%- if sec %}<a href="{{ sec.url | relative_url }}">More in {{ sec.title }}</a>{% endif %}
+    {%- if page.discuss %}<a href="{{ page.discuss }}" target="_blank" rel="noopener">Discuss on LinkedIn ↗</a>{% endif %}
+    <a href="{{ '/writing/' | relative_url }}">All writing</a>
+  </footer>
+</article>

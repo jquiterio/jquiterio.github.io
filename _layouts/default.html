@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
+{% include head.html %}
+</head>
+<body>
+{% include header.html %}
+<main id="main">
+{{ content }}
+</main>
+{% include footer.html %}
+<script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+{%- if page.gn %}
+<script src="{{ '/assets/js/gamma-gn.js' | relative_url }}" defer></script>
+{%- endif %}
+</body>
+</html>

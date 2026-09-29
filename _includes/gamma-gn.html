@@ -1,0 +1,35 @@
+{%- comment -%}
+  Interactive γGN density. Usage:
+    {% include gamma-gn.html %}                     compact version
+    {% include gamma-gn.html full=true start=3 %}   with tail readout and log-scale toggle
+{%- endcomment -%}
+<figure class="gn{% if include.full %} full{% endif %}" data-gn{% if include.full %} data-gn-full{% endif %} data-gn-start="{{ include.start | default: 2 }}">
+  <div class="gn-head">
+    <span class="gn-title">{{ include.title | default: "The γ-order generalized normal" }}</span>
+    <span class="gn-legend"><span><i></i>γGN</span><span><i class="ref"></i>Normal</span></span>
+  </div>
+  <canvas role="img" aria-label="Density of the gamma-order generalized normal distribution compared with the standard normal"></canvas>
+  <div class="gn-controls">
+    <div class="gn-row">
+      <span class="label">Shape parameter γ</span>
+      {%- if include.full %}<button type="button" class="gn-toggle" aria-pressed="false">Log scale</button>{% endif %}
+    </div>
+    <input type="range" min="0" max="1000" value="504" aria-label="Shape parameter gamma">
+    <div class="gn-ticks">
+      <button type="button" data-g="1.05">Uniform · γ→1</button>
+      <button type="button" data-g="2">Normal · γ=2</button>
+      <button type="button" data-g="20">Laplace · γ→∞</button>
+    </div>
+  </div>
+  <div class="gn-readout" aria-live="polite">
+    <div><b data-out="g">2.00</b><span>γ</span></div>
+    <div><b data-out="b">2.00</b><span>exponent γ/(γ−1)</span></div>
+    <div><b data-out="k">0.00</b><span>excess kurtosis</span></div>
+    {%- if include.full %}
+    <div><b data-out="r">1.00×</b><span>P(|X| &gt; 3 sd) vs Normal</span></div>
+    {%- endif %}
+  </div>
+  {%- if include.note %}
+  <figcaption class="gn-note">{{ include.note }}</figcaption>
+  {%- endif %}
+</figure>

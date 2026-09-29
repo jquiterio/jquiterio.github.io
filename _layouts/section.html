@@ -1,0 +1,70 @@
+---
+layout: default
+---
+{%- assign sec = site.data.sections | where: "id", page.section | first -%}
+{%- assign posts = site.posts | where: "section", page.section -%}
+<div class="wrap">
+  <header class="page-head">
+    <span class="label">{{ sec.title }}</span>
+    <h1>{{ page.headline }}</h1>
+    {%- for para in page.standfirst %}
+    <p class="standfirst">{{ para }}</p>
+    {%- endfor %}
+    <div class="topics-inline">
+      {%- for t in sec.topics %}<span class="tag">{{ t }}</span>{% endfor %}
+    </div>
+  </header>
+</div>
+
+{{ content }}
+
+{%- if page.focus %}
+<section class="block" aria-labelledby="focus-h">
+  <div class="wrap block-grid">
+    <div class="rail"><span class="label">Focus</span></div>
+    <div>
+      <h2 id="focus-h">{{ page.focus_title | default: "What I write about" }}</h2>
+      <div class="focus">
+        {%- for f in page.focus %}
+        <article>
+          <h3>{{ f.title }}</h3>
+          <p>{{ f.text }}</p>
+        </article>
+        {%- endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+{%- if page.questions %}
+<section class="block" aria-labelledby="q-h">
+  <div class="wrap block-grid">
+    <div class="rail"><span class="label">Open questions</span></div>
+    <div>
+      <h2 id="q-h">Questions I am working through</h2>
+      <ol class="questions">
+        {%- for q in page.questions %}
+        <li>{{ q }}</li>
+        {%- endfor %}
+      </ol>
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+<section class="block" aria-labelledby="w-h">
+  <div class="wrap block-grid">
+    <div class="rail"><span class="label">Writing</span></div>
+    <div>
+      <h2 id="w-h">Articles</h2>
+      {%- if posts.size > 0 %}
+      <ol class="entries">
+        {%- for p in posts %}{% include entry.html post=p %}{% endfor %}
+      </ol>
+      {%- else %}
+      <p class="empty">New articles in {{ sec.title }} are published on <a href="{{ site.social.medium }}" target="_blank" rel="noopener">Medium</a> and listed here as they appear.</p>
+      {%- endif %}
+    </div>
+  </div>
+</section>

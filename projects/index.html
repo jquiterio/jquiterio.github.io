@@ -1,0 +1,37 @@
+---
+title: Projects
+kicker: Projects
+headline: Where the mathematics meets a real system
+standfirst: Reproducible studies and software. Each project states its method, its result and the tools used, so that the work can be checked.
+---
+<section class="block" aria-labelledby="proj-h">
+  <div class="wrap block-grid">
+    <div class="rail"><span class="label">Selected work</span></div>
+    <div>
+      <h2 id="proj-h" class="sr-only">Selected work</h2>
+      <div class="projects">
+        {%- for p in site.data.projects %}
+        {%- assign sec = site.data.sections | where: "id", p.section | first %}
+        <article class="proj">
+          <span class="label">{{ p.kind }} · {{ p.year }}</span>
+          <h3>{{ p.title }}</h3>
+          <p>{{ p.summary }}</p>
+          {%- if p.figures %}
+          <div class="figs">{% for f in p.figures %}<span class="chip">{{ f }}</span>{% endfor %}</div>
+          {%- endif %}
+          <span class="stack">{{ p.stack }}</span>
+          {%- if p.link or p.writeup %}
+          <div class="proj-links">
+            {%- if p.writeup %}<a href="{{ p.writeup | relative_url }}">Read the write-up</a>{% endif %}
+            {%- if p.link %}<a href="{{ p.link }}" target="_blank" rel="noopener">Read on Medium ↗</a>{% endif %}
+          </div>
+          {%- endif %}
+        </article>
+        {%- endfor %}
+      </div>
+      <div class="hero-actions">
+        <a class="btn ghost" href="{{ site.social.github }}" target="_blank" rel="noopener">Code on GitHub ↗</a>
+      </div>
+    </div>
+  </div>
+</section>

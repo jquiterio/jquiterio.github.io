@@ -1,0 +1,15 @@
+{%- assign p = include.post -%}
+{%- assign sec = site.data.sections | where: "id", p.section | first -%}
+{%- assign href = p.external_url | default: p.url | relative_url -%}
+<li class="entry" data-section="{{ p.section }}">
+  <time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%d %b %Y" }}</time>
+  <div>
+    <h3><a href="{{ href }}"{% if p.external_url %} target="_blank" rel="noopener"{% endif %}>{{ p.title }}</a></h3>
+    {%- assign blurb = p.summary | default: p.excerpt | strip_html | normalize_whitespace | truncate: 220 -%}
+    {%- if blurb != "" %}<p>{{ blurb }}</p>{% endif %}
+    <div class="where">
+      <span class="src">{% if p.external_url %}{{ p.source | default: "External" }} ↗{% else %}Essay{% endif %}</span>
+      {%- if include.show_section and sec %}<span class="label"><a href="{{ sec.url | relative_url }}">{{ sec.title }}</a></span>{% endif %}
+    </div>
+  </div>
+</li>
